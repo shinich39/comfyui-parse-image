@@ -27,6 +27,7 @@ Load Checkpoint.ckpt_name
 CheckpointLoaderSimple.ckpt_name  
 1.ckpt_name  
 KSampler.seed  
+KSampler\[1\].seed  
 ...  
 
 Special format:  

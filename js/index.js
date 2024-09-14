@@ -146,17 +146,29 @@ function matchNode(n, q) {
   return false;
 }
 
-function findNode(nodes, query, reverse) {
+function findNode(nodes, query, index, reverse) {
+  if (!index) {
+    index = 0;
+  }
+  let count = 0;
   if (!reverse) {
     for (let i = 0; i < nodes.length; i++) {
       if (matchNode(nodes[i], query)) {
-        return nodes[i];
+        if (count === index) {
+          return nodes[i];
+        } else {
+          count++;
+        }
       }
     }
   } else {
     for (let i = nodes.length - 1; i >= 0; i--) {
       if (matchNode(nodes[i], query)) {
-        return nodes[i];
+        if (count === index) {
+          return nodes[i];
+        } else {
+          count++;
+        }
       }
     }
   }
@@ -190,11 +202,18 @@ app.registerExtension({
             } else if (q.value === "height") {
               v.value = height;
             } else {
-              const qv = q.value.split(".");
-              const nn = qv.slice(0, qv.length - 1).join(".");
-              const wn = qv.slice(qv.length - 1).join(".");
-    
-              const n = findNode(nodes, nn);
+              let qv = q.value.split(".");
+              let nn = qv.slice(0, qv.length - 1).join(".");
+              let ni = 0;
+              let wn = qv.slice(qv.length - 1).join(".");
+
+              // parse index of node
+              if (/\[([0-9]+)\]$/.test(nn)) {
+                ni = parseInt(/\[([0-9]+)\]$/.exec(nn).pop());
+                nn = nn.replace(/\[([0-9]+)\]$/, "");
+              }
+
+              let n = findNode(nodes, nn, ni);
               if (n && n.values[wn]) {
                 v.value = n.values[wn];
               }
