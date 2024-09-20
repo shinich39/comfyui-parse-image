@@ -26,7 +26,7 @@ class LoadBoolean():
     pass
 
   @classmethod
-  def IS_CHANGED(s):
+  def IS_CHANGED(self, **kwargs):
     return float("NaN")
 
   @classmethod
@@ -52,7 +52,7 @@ class LoadInt():
     pass
 
   @classmethod
-  def IS_CHANGED(s):
+  def IS_CHANGED(self, **kwargs):
     return float("NaN")
 
   @classmethod
@@ -78,7 +78,7 @@ class LoadFloat():
     pass
 
   @classmethod
-  def IS_CHANGED(s):
+  def IS_CHANGED(self, **kwargs):
     return float("NaN")
 
   @classmethod
@@ -104,7 +104,7 @@ class LoadString():
     pass
 
   @classmethod
-  def IS_CHANGED(s):
+  def IS_CHANGED(self, **kwargs):
     return float("NaN")
 
   @classmethod
@@ -130,7 +130,7 @@ class LoadCombo():
     pass
 
   @classmethod
-  def IS_CHANGED(s):
+  def IS_CHANGED(self, **kwargs):
     return float("NaN")
 
   @classmethod
